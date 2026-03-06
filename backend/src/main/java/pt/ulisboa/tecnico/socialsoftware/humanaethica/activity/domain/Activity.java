@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.activity.dto.ActivityDto;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.enrollment.domain.Enrollment;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.report.domain.Report;
+import pt.ulisboa.tecnico.socialsoftware.humanaethica.shift.domain.Shift;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.exceptions.HEException;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.institution.domain.Institution;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.participation.domain.Participation;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.theme.domain.Theme;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.utils.DateHandler;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,6 +56,9 @@ public class Activity {
 
     @OneToMany(mappedBy = "activity")
     private List<Report> reports = new ArrayList<>();
+
+    @OneToMany(mappedBy = "activity")
+    private List<Shift> shifts = new ArrayList<>();
 
     public Activity() {
     }
@@ -421,4 +426,18 @@ public class Activity {
             throw new HEException(ACTIVITY_SUSPENSION_AFTER_END);
         }
     }
+
+    //Shifts sets and gets
+    public List<Shift> getShifts() {
+    return shifts;
+    }
+
+    public void setShifts(List<Shift> shifts) {
+        this.shifts = shifts;
+    }
+
+    public void addShift(Shift shift) {
+        this.shifts.add(shift);
+    }
+
 }

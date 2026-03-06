@@ -5,6 +5,7 @@ import pt.ulisboa.tecnico.socialsoftware.humanaethica.enrollment.dto.EnrollmentD
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.institution.dto.InstitutionDto;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.theme.dto.ThemeDto;
 import pt.ulisboa.tecnico.socialsoftware.humanaethica.utils.DateHandler;
+import pt.ulisboa.tecnico.socialsoftware.humanaethica.shift.dto.ShiftDto;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class ActivityDto {
     private Integer suspendedByUserId;
     private List<ThemeDto> themes;
     private InstitutionDto institution;
+    private List<ShiftDto> shifts;
 
     public ActivityDto(){
     }
@@ -42,6 +44,9 @@ public class ActivityDto {
         this.themes = activity.getThemes().stream()
                 .map(theme->new ThemeDto(theme,false, true, false))
                 .toList();
+        this.shifts = activity.getShifts().stream()
+                .map(ShiftDto::new)
+                .toList();
 
         setState(activity.getState().name());
         setCreationDate(DateHandler.toISOString(activity.getCreationDate()));
@@ -56,6 +61,14 @@ public class ActivityDto {
                 setInstitution(new InstitutionDto(activity.getInstitution(), false, false));
 
         }
+    }
+
+    public List<ShiftDto> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(List<ShiftDto> shifts) {
+        this.shifts = shifts;
     }
 
     public void setThemes(List<ThemeDto> themes) {

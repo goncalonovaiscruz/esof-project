@@ -66,7 +66,21 @@ public enum ErrorMessage {
     REPORT_ACTIVTIY_IS_ALREADY_REPORTED("The activity is already reported"),
     REPORT_AFTER_ACTIVTY_CLOSED("The activity period is already closed"),
     REPORT_NOT_FOUND("Report not found with id %d"),
+    
+
+// Shift
+    SHIFT_NOT_FOUND("Shift not found with id %d"),
+    SHIFT_LOCATION_INVALID("Shift location is invalid"),
+    SHIFT_INVALID_DATE("Date format for %s is invalid"),
+    SHIFT_START_AFTER_END("Shift start is after end"),
+    SHIFT_OUTSIDE_ACTIVITY_PERIOD("Shift dates must be within activity period"),
+    SHIFT_PARTICIPANTS_LIMIT_REQUIRED("Shift participants limit is required"),
+    SHIFT_PARTICIPANTS_LIMIT_INVALID("Shift participants limit must be greater than 0"),
+    SHIFT_ACTIVITY_REQUIRED("Shift must belong to an activity"),
+    SHIFT_ACTIVITY_NOT_APPROVED("Shifts can only be added to approved activities"),
+    SHIFT_LIMITS_EXCEED_ACTIVITY_LIMIT("Sum of shift participants limits exceeds activity participants limit"),
     ;
+    
 
     public final String label;
 
